@@ -1,0 +1,56 @@
+using System;
+
+namespace FizzBuzz
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Get the input from the user.
+            Console.WriteLine("Enter a list of numbers, separated by commas: ");
+            string input = Console.ReadLine();
+
+            // Process and print the results
+            ProcessAndPrintResults(input);
+        }
+
+        static void ProcessAndPrintResults(string input)
+        {
+            string[] numbers = input.Split(',');
+
+            foreach (string number in numbers)
+            {
+                string trimmedNumber = number.Trim();
+                if (int.TryParse(trimmedNumber, out int num))
+                {
+                    string result = GetFizzBuzzResult(num);
+                    Console.WriteLine(result);
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid item: {trimmedNumber}");
+                }
+            }
+        }
+
+        static string GetFizzBuzzResult(int num)
+        {
+            if (num % 3 == 0 && num % 5 == 0)
+            {
+                return "FizzBuzz";
+            }
+            else if (num % 3 == 0)
+            {
+                return "Fizz";
+            }
+            else if (num % 5 == 0)
+            {
+                return "Buzz";
+            }
+            else
+            {
+                return $"Divide {num} by 3\nDivide {num} by 5";
+            }
+        }
+    }
+}
